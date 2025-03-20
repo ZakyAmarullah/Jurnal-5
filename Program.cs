@@ -20,6 +20,34 @@
         }
     }
 }
+
+class SimpleDataBase<T>
+{
+    List<T> storedData;
+    List<DateTime> inputDates;
+
+    public SimpleDataBase()
+    {
+        inputDates = new List<DateTime>();
+        storedData = new List<T>();
+    }
+
+    public void AddNewData(T data)
+    {
+        storedData.Add(data);
+        inputDates.Add(DateTime.Now);
+    }
+
+    public void PrintAllData()
+    {
+        for (int i = 0; i < storedData.Count; i++)
+        {
+            Console.WriteLine($"Data {i} berisi: {storedData[i]}, yang disimpan pada waktu UTC: {inputDates[i]}");
+        }
+
+    }
+}
+
 public class program
     {
         public static void Main() {
@@ -27,5 +55,8 @@ public class program
                 PemrosesData data = new PemrosesData();
                 Console.WriteLine("Nilai terbesar adalah: " + data.DapatkanNilaiTerbesar<double>(10, 30, 22));
             }
+            
+            SimpleDataBase<string> simpleDataBase = new SimpleDataBase<string>();
+            simpleDataBase.PrintAllData();
         }
     }
